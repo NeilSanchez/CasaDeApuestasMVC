@@ -1,0 +1,44 @@
+﻿@model IEnumerable<UsuarioModel>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Apellido</th>
+            <th>Apellido</th>
+            <th>Apellido</th>
+            <th>Ciudad</th>
+            <th>Pais</tha
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var customer in Model)
+        {
+            <tr>@customer.Id</tr>
+            <tr>@customer.Nombre</tr>
+            <tr>@customer.Paterno</tr>
+            <tr>@customer.Materno</tr>
+            <tr>@customer.Telefono</tr>
+            <tr>@customer.Direccion</tr>
+            <tr>@customer.FechaNacimiento</tr>
+            <tr>@customer.Genero</tr>
+            <tr>@customer.NumeroDocumento</tr>
+            <tr>@customer.Correo</tr>
+            <tr>@customer.PaisId</tr>
+            <tr>
+                <button class="btn btn-warning btnEditarCliente"data-id="@customer.Id">
+                    Editar
+                </button>
+                <button class="btn btn-danger btnEliminarCliente"data-id="@customer.Id">
+                    Eliminar
+                </button>
+            </tr>
+        }
+                        
+    </tbody>
+</table>
+    
