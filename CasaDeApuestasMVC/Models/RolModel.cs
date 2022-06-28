@@ -2,7 +2,7 @@
 {
     public class RolModel
     {
-        public Rol()
+        public RolModel()
         {
             UsuarioRol = new HashSet<UsuarioRolModel>();
         }

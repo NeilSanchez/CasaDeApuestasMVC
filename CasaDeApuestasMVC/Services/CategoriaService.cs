@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace CasaDeApuestasMVC.Services
 {
-    public class CategoriasService
+    public class CategoriaService
     {
         public static async Task<IEnumerable<CategoriaModel>> GetAll()
         {
@@ -13,7 +13,7 @@ namespace CasaDeApuestasMVC.Services
             var client = new HttpClient();
             var response = await client.GetAsync(urlBase + "GetAll");
             string result = await response.Content.ReadAsStringAsync();
-            var categorias = JsonConvert.DeserializeObject<IEnumerable<UsuarioModel>>(result);
+            var categorias = JsonConvert.DeserializeObject<IEnumerable<CategoriaModel>>(result);
             return categorias;
 
         }

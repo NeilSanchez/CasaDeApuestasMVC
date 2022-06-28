@@ -18,24 +18,26 @@
     <tbody>
         @foreach(var customer in Model)
         {
-            <tr>@customer.Id</tr>
-            <tr>@customer.Nombre</tr>
-            <tr>@customer.Paterno</tr>
-            <tr>@customer.Materno</tr>
-            <tr>@customer.Telefono</tr>
-            <tr>@customer.Direccion</tr>
-            <tr>@customer.FechaNacimiento</tr>
-            <tr>@customer.Genero</tr>
-            <tr>@customer.NumeroDocumento</tr>
-            <tr>@customer.Correo</tr>
-            <tr>@customer.PaisId</tr>
             <tr>
-                <button class="btn btn-warning btnEditarCliente"data-id="@customer.Id">
-                    Editar
-                </button>
-                <button class="btn btn-danger btnEliminarCliente"data-id="@customer.Id">
-                    Eliminar
-                </button>
+                <td>@customer.Id</td>
+                <td>@customer.Nombre</td>
+                <td>@customer.Paterno</td>
+                <td>@customer.Materno</td>
+                <td>@customer.Telefono</td>
+                <td>@customer.Direccion</td>
+                <td>@customer.FechaNacimiento</td>
+                <td>@customer.Genero</td>
+                <td>@customer.NumeroDocumento</td>
+                <td>@customer.Correo</td>
+                <td>@customer.PaisId</td>
+                <td>
+                    <button class="btn btn-warning btnEditarCliente"data-id="@customer.Id">
+                        Editar
+                    </button>
+                    <button class="btn btn-danger btnEliminarCliente"data-id="@customer.Id">
+                        Eliminar
+                    </button>
+                </td>
             </tr>
         }
                         
