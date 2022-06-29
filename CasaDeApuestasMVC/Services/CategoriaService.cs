@@ -13,8 +13,8 @@ namespace CasaDeApuestasMVC.Services
             var client = new HttpClient();
             var response = await client.GetAsync(urlBase + "GetAll");
             string result = await response.Content.ReadAsStringAsync();
-            var categorias = JsonConvert.DeserializeObject<IEnumerable<CategoriaModel>>(result);
-            return categorias;
+            var categoria = JsonConvert.DeserializeObject<IEnumerable<CategoriaModel>>(result);
+            return categoria;
 
         }
     }
