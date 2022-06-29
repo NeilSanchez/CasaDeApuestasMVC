@@ -1,40 +1,41 @@
 ﻿@model IEnumerable<UsuarioModel>
 
-<table>
+<table id="tbListadoUsuario" class="table table-hover">
     <thead>
         <tr>
             <th>Id</th>
             <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Apellido</th>
-            <th>Apellido</th>
-            <th>Apellido</th>
-            <th>Ciudad</th>
-            <th>Pais</tha
-            <th>Teléfono</th>
-            <th>Acciones</th>
+            <th>Paterno</th>
+            <th>Materno</th>
+            <th>Telefono</th>
+            <th>Direccion</th>
+            <th>FechaNacimiento</th>
+            <th>Genero</th>
+            <th>DNI</th>
+            <th>Correo</th>
+            <th>PaisID</th>
         </tr>
     </thead>
     <tbody>
-        @foreach(var customer in Model)
+        @foreach(var usuario in Model)
         {
             <tr>
-                <td>@customer.Id</td>
-                <td>@customer.Nombre</td>
-                <td>@customer.Paterno</td>
-                <td>@customer.Materno</td>
-                <td>@customer.Telefono</td>
-                <td>@customer.Direccion</td>
-                <td>@customer.FechaNacimiento</td>
-                <td>@customer.Genero</td>
-                <td>@customer.NumeroDocumento</td>
-                <td>@customer.Correo</td>
-                <td>@customer.PaisId</td>
+                <td>@usuario.Id</td>
+                <td>@usuario.Nombre</td>
+                <td>@usuario.Paterno</td>
+                <td>@usuario.Materno</td>
+                <td>@usuario.Telefono</td>
+                <td>@usuario.Direccion</td>
+                <td>@usuario.FechaNacimiento</td>
+                <td>@usuario.Genero</td>
+                <td>@usuario.NumeroDocumento</td>
+                <td>@usuario.Correo</td>
+                <td>@usuario.PaisId</td>
                 <td>
-                    <button class="btn btn-warning btnEditarCliente"data-id="@customer.Id">
+                    <button class="btn btn-warning btnEditarCliente"data-id="@usuario.Id">
                         Editar
                     </button>
-                    <button class="btn btn-danger btnEliminarCliente"data-id="@customer.Id">
+                    <button class="btn btn-danger btnEliminarCliente"data-id="@usuario.Id">
                         Eliminar
                     </button>
                 </td>
@@ -43,4 +44,14 @@
                         
     </tbody>
 </table>
-    
+
+<script>
+    loadTable()
+    function loadTable(){
+        var table = $('#tbListadoUsuario').DataTable({
+            lengthChange: false,
+            buttons:['copy','excel','pdf','colvis']
+        });
+        table.buttons().container().insertBefore("#tbListadoCliente_filter");
+    }
+</script>
