@@ -1,5 +1,46 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<EquiposModel>
+
+<table id="tbListadoUsuario" class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>PaisID</th>
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var equipos in Model)
+        {
+            <tr>
+                <td>@equipos.Id</td>
+                <td>@equipos.PaisId</td>
+                <td>@equipos.Nombre</td>                
+                <td>
+                    <button class="btn btn-warning btnEditarEquipos"data-id="@equipos.Id">
+                        Editar
+                    </button>
+                    <button class="btn btn-danger btnEliminarEquipos"data-id="@equipos.Id">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        }
+                        
+    </tbody>
+</table>
+
+<script>
+    loadTable()
+    function loadTable(){
+        var table = $('#tbListadoEquipos').DataTable({
+            lengthChange: false,
+            buttons:['copy','excel','pdf','colvis']
+        });
+        table.buttons().container().insertBefore("#tbListadoCliente_filter");
+    }
+</script>
+<script type="text/javascript">
+    function aleatorio(){
+        var aleatorio = Math.random();
+    }
+</script>
