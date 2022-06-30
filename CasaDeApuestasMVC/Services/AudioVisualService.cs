@@ -8,7 +8,7 @@ namespace CasaDeApuestasMVC.Services
         public static async Task<IEnumerable<AudioVisualModel>> GetAll()
         {
             //Get all Users
-            String urlBase = "http://localhost:5001/api/AudioVisual/";
+            String urlBase = "http://localhost:5001/api/Audiovisual/";
 
             var client = new HttpClient();
             var response = await client.GetAsync(urlBase + "GetAll");
