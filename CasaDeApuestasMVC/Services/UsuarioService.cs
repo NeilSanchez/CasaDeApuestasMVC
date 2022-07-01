@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using CasaDeApuestasMVC.Models;
+using System.Text;
 
 namespace CasaDeApuestasMVC.Services
 {
@@ -16,6 +17,54 @@ namespace CasaDeApuestasMVC.Services
             var usuario = JsonConvert.DeserializeObject<IEnumerable<UsuarioModel>>(result);
             return usuario;
 
+        }
+        public static async Task<UsuarioModel> GetUsuario(int id)
+        {
+            //Get All using HttpClient
+            string urlBase = "http://localhost:5001/api/Usuario/";
+
+            using var httpClient = new HttpClient();
+            using var response = await httpClient.GetAsync(urlBase + "GetById/" + id);
+            string apiResponse = response.Content.ReadAsStringAsync().Result;
+            var usuario = JsonConvert.DeserializeObject<UsuarioModel>(apiResponse);
+            return usuario;
+        }
+
+        //Create new Usuario
+        public static async Task<bool> Insert(UsuarioModel usuario)
+        {
+            string urlBase = "http://localhost:5001/api/Usuario/";
+
+            using var httpClient = new HttpClient();
+            var json = JsonConvert.SerializeObject(usuario);
+            var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+            using var response = await httpClient.PostAsync(urlBase + "Insert", stringContent);
+            string apiResponse = response.Content.ReadAsStringAsync().Result;
+            var result = JsonConvert.DeserializeObject<bool>(apiResponse);
+            return result;
+        }
+
+        //Update Usuario
+        public static async Task<bool> Update(int id, UsuarioModel usuario)
+        {
+            string urlBase = "http://localhost:5001/api/Usuario/";
+            using var httpClient = new HttpClient();
+            var json = JsonConvert.SerializeObject(usuario);
+            var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+            using var response = await httpClient.PutAsync(urlBase + "Update/" + id, stringContent);
+            string apiResponse = response.Content.ReadAsStringAsync().Result;
+            var result = JsonConvert.DeserializeObject<bool>(apiResponse);
+            return result;
+        }
+        //Delete Usuario
+        public static async Task<bool> Delete(int id)
+        {
+            string urlBase = "http://localhost:5001/api/Usuario/";
+            using var httpClient = new HttpClient();
+            using var response = await httpClient.DeleteAsync(urlBase + "Delete/" + id);
+            string apiResponse = response.Content.ReadAsStringAsync().Result;
+            var result = JsonConvert.DeserializeObject<bool>(apiResponse);
+            return result;
         }
     }
 }
