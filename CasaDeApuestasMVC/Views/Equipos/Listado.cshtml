@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<EquiposModel>
-
-<table id="tbListadoUsuario" class="table table-hover">
+<table id="tbListadoEquipos" class="table table-hover">
     <thead>
         <tr>
             <th>Id</th>
             <th>PaisId</th>
             <th>Nombre</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -14,7 +14,8 @@
             <tr>
                 <td>@equipos.Id</td>
                 <td>@equipos.PaisId</td>
-                <td>@equipos.Nombre</td>                
+                <td>@equipos.Nombre</td>
+                
                 <td>
                     <button class="btn btn-warning btnEditarEquipos"data-id="@equipos.Id">
                         Editar
@@ -36,11 +37,6 @@
             lengthChange: false,
             buttons:['copy','excel','pdf','colvis']
         });
-        table.buttons().container().insertBefore("#tbListadoCliente_filter");
-    }
-</script>
-<script type="text/javascript">
-    function aleatorio(){
-        var aleatorio = Math.random();
+        table.buttons().container().insertBefore("#tbListadoEquipos_filter");
     }
 </script>

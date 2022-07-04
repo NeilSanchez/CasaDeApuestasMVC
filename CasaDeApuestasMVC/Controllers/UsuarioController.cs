@@ -31,7 +31,7 @@ namespace CasaDeApuestasMVC.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Guardar(int idUsuario, string nombre, string paterno,
-            string materno, string telefono, string direccion, DateTime fechaNacimiento, string genero, string dni, string correo, int idRol, string clave, int idPais)
+            string materno, string telefono, string direccion, DateTime fechaNacimiento, string genero, string dni, string correo, int rolId, string clave, int idPais)
         {
             var usuario = new UsuarioModel()
             {
@@ -44,7 +44,7 @@ namespace CasaDeApuestasMVC.Controllers
                 Genero = genero,
                 NumeroDocumento = dni,
                 Correo = correo,
-                RolId = idRol,
+                RolId = rolId,
                 Clave = clave,
                 PaisId = idPais
             };

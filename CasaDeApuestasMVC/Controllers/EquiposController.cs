@@ -1,4 +1,5 @@
-﻿using CasaDeApuestasMVC.Services;
+﻿using CasaDeApuestasMVC.Models;
+using CasaDeApuestasMVC.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CasaDeApuestasMVC.Controllers
@@ -12,7 +13,39 @@ namespace CasaDeApuestasMVC.Controllers
         public async Task<IActionResult> Listado()
         {
             var equipos = await EquiposService.GetAll();
-            return View(equipos);
+            return PartialView(equipos);
+        }
+        public async Task<IActionResult> Eliminar(int idEquipos)
+        {
+            bool exito = await EquiposService.Delete(idEquipos);
+            return Json(exito);
+        }
+
+        public async Task<IActionResult> Obtener(int idEquipos)
+        {
+            var equipos = await EquiposService.GetEquipos(idEquipos);
+            return Json(equipos);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Guardar(int idEquipos, int idPais, string nombre)
+        {
+            var equipos = new EquiposModel()
+            {
+                Nombre = nombre,
+                PaisId = idPais
+            };
+
+            bool exito = true;
+            if (idEquipos == -1)
+                exito = await EquiposService.Insert(equipos);
+            else
+            {
+                equipos.Id = idEquipos;
+                exito = await EquiposService.Update(idEquipos, equipos);
+            }
+            return Json(exito);
         }
     }
 }

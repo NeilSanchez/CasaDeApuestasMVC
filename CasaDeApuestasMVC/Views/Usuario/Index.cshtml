@@ -91,7 +91,21 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Pais</label>
-                                <input type="int" class="form-control" id="hidIdPais" />
+                                <input type="text" class="form-control" id="hidIdPais" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>IdRol</label>
+                                <input type="text" class="form-control" id="txtRolId" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Clave</label>
+                                <input type="text" class="form-control" id="hidClave" />
                             </div>
                         </div>
                     </div>
@@ -165,6 +179,8 @@
                 $("#txtDni").val(objUsuario.dni);
                 $("#txtCorreo").val(objUsuario.correo);
                 $("#hidIdPais").val(objUsuario.idPais);
+                $("#txtRolId").val(objUsuario.rolId);
+                $("#txtClave").val(objUsuario.Clave);
                 modalRegistro.modal("show");
             }
         });
@@ -208,6 +224,8 @@
         var genero = $("#txtGenero").val();
         var dni = $("#txtDni").val();
         var correo = $("#txtCorreo").val();
+        var rolId = $("#txtRolId").val();
+        var clave = $("#txtClave").val();
 
         $.ajax({
             type: "POST",
@@ -224,7 +242,8 @@
                 genero: genero,
                 dni: dni,
                 correo: correo,
-                
+                rolId: rolId,
+                clave: clave
             },
             cache:false,
             success: function(result)

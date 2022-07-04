@@ -1,12 +1,18 @@
 ﻿@model IEnumerable<CategoriaModel>
-
-<table id="tbListadoUsuario" class="table table-hover">
+<script type="text/javascript">
+    function aleatorio(){
+        var aleatorio = Math.random();
+    }
+</script>
+<table id="tbListadoCategoria" class="table table-hover">
+    
     <thead>
         <tr>
             <th>Id</th>
             <th>Descripcion</th>
             <th>Apuestas Actuales</th>
             <th>Visitas en el Dia</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -15,7 +21,7 @@
             <tr>
                 <td>@categoria.Id</td>
                 <td>@categoria.Descripcion</td>
-                <td>aleatorio()</td>
+                <td>Math.random()</td>
                 <td>aleatorio()</td>
                 
                 <td>
@@ -39,11 +45,6 @@
             lengthChange: false,
             buttons:['copy','excel','pdf','colvis']
         });
-        table.buttons().container().insertBefore("#tbListadoCliente_filter");
-    }
-</script>
-<script type="text/javascript">
-    function aleatorio(){
-        var aleatorio = Math.random();
+        table.buttons().container().insertBefore("#tbListadoCategoria_filter");
     }
 </script>
