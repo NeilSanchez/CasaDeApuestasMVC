@@ -31,21 +31,21 @@ namespace CasaDeApuestasMVC.Services
         }
 
         //Create new Usuario
-        public static async Task<bool> Insert(UsuarioModel usuario)
+        public static async Task<int> Insert(UsuarioModel usuario)
         {
             string urlBase = "http://localhost:5001/api/Usuario/";
 
             using var httpClient = new HttpClient();
             var json = JsonConvert.SerializeObject(usuario);
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-            using var response = await httpClient.PostAsync(urlBase + "Insert", stringContent);
+            using var response = await httpClient.PostAsync(urlBase + "Create", stringContent);
             string apiResponse = response.Content.ReadAsStringAsync().Result;
-            var result = JsonConvert.DeserializeObject<bool>(apiResponse);
+            var result = JsonConvert.DeserializeObject<int>(apiResponse);
             return result;
         }
 
         //Update Usuario
-        public static async Task<bool> Update(int id, UsuarioModel usuario)
+        public static async Task<int> Update(int id, UsuarioModel usuario)
         {
             string urlBase = "http://localhost:5001/api/Usuario/";
             using var httpClient = new HttpClient();
@@ -53,7 +53,7 @@ namespace CasaDeApuestasMVC.Services
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
             using var response = await httpClient.PutAsync(urlBase + "Update/" + id, stringContent);
             string apiResponse = response.Content.ReadAsStringAsync().Result;
-            var result = JsonConvert.DeserializeObject<bool>(apiResponse);
+            var result = JsonConvert.DeserializeObject<int>(apiResponse);
             return result;
         }
         //Delete Usuario
@@ -63,8 +63,8 @@ namespace CasaDeApuestasMVC.Services
             using var httpClient = new HttpClient();
             using var response = await httpClient.DeleteAsync(urlBase + "Delete/" + id);
             string apiResponse = response.Content.ReadAsStringAsync().Result;
-            var result = JsonConvert.DeserializeObject<bool>(apiResponse);
-            return result;
+            
+            return (int)response.StatusCode == 400 ? false : true;
         }
     }
 }

@@ -90,22 +90,22 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Pais</label>
+                                <label>PaisID</label>
                                 <input type="text" class="form-control" id="hidIdPais" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        @*<div class="col-md-6">
                             <div class="form-group">
                                 <label>IdRol</label>
                                 <input type="text" class="form-control" id="txtRolId" />
                             </div>
-                        </div>
+                        </div>*@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Clave</label>
-                                <input type="text" class="form-control" id="hidClave" />
+                                <input type="text" class="form-control" id="txtClave" />
                             </div>
                         </div>
                     </div>
@@ -128,15 +128,28 @@
 
 
 <script>
+     CargarListadoUsuario();
+     function CargarListadoUsuario()
+    {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Listado","Usuario")',
+            cache:false,
+            success: function(dataHTMLUsuarios)
+            {
+                $("#divListadoUsuario").html(dataHTMLUsuarios);
+            }
+        });
+    }
 
      $("#divListadoUsuario").on('click','.btnEliminarUsuario',function()
      {
-         let vIdUsuario = $(this).attr("data-id");
+         var vIdUsuario = $(this).attr("data-id");
 
          if(confirm("¿Está seguro de eliminar al usuario?")){
 
             $.ajax({
-                type: "GET",
+                type: "DELETE",
                 url: '@Url.Action("Eliminar","Usuario")',
                 data:{
                     idUsuario: vIdUsuario
@@ -161,7 +174,7 @@
         let modalRegistro = $("#modalRegistroUsuario");
 
         $.ajax({
-            type: "GET",
+            type: "PUT",
             url: '@Url.Action("Obtener","Usuario")',
             data: {
                 idUsuario: vIdUsuario
@@ -179,7 +192,7 @@
                 $("#txtDni").val(objUsuario.dni);
                 $("#txtCorreo").val(objUsuario.correo);
                 $("#hidIdPais").val(objUsuario.idPais);
-                $("#txtRolId").val(objUsuario.rolId);
+                //$("#txtRolId").val(objUsuario.rolId);
                 $("#txtClave").val(objUsuario.Clave);
                 modalRegistro.modal("show");
             }
@@ -189,31 +202,20 @@
 
 
 
-    CargarListadoUsuario();
+    
 
-    function CargarListadoUsuario()
-    {
-        $.ajax({
-            type: "GET",
-            url: '@Url.Action("Listado","Usuario")',
-            cache:false,
-            success: function(dataHTMLUsuarios)
-            {
-                $("#divListadoUsuario").html(dataHTMLUsuarios);
-            }
-        });
-    }
+    
 
     //Button click btnAgregar
     $("#btnAgregarUsuario").click(function(){
-        $("#hidIdUsuario").val(-1);
+        //$("#hidIdUsuario").val(-1);
     //Show modal
         $("#modalRegistroUsuario").modal("show");
     });
 
     //Button click btnGuardarUsuario
     $(".btnGuardarUsuario").click(function(){
-        var idUsuario = $("#hidIdUsuario").val();
+        //var idUsuario = $("#hidIdUsuario").val();
         var idPais = $("#hidIdPais").val();
         var nombre = $("#txtNombre").val();
         var paterno = $("#txtPaterno").val();
@@ -224,14 +226,14 @@
         var genero = $("#txtGenero").val();
         var dni = $("#txtDni").val();
         var correo = $("#txtCorreo").val();
-        var rolId = $("#txtRolId").val();
+        //var rolId = $("#txtRolId").val();
         var clave = $("#txtClave").val();
 
         $.ajax({
             type: "POST",
             url: '@Url.Action("Guardar","Usuario")',
             data: {
-                idUsuario: idUsuario,
+                idUsuario: -1,
                 idPais: idPais,
                 nombre: nombre,
                 paterno: paterno,
@@ -242,12 +244,14 @@
                 genero: genero,
                 dni: dni,
                 correo: correo,
-                rolId: rolId,
+                //rolId: rolId,
                 clave: clave
             },
             cache:false,
             success: function(result)
             {
+                //$("#modalRegistroUsuario").modal("hide");
+                //CargarListadoUsuario();
                 if(result){
                   $("#modalRegistroUsuario").modal("hide");
                   CargarListadoUsuario();
