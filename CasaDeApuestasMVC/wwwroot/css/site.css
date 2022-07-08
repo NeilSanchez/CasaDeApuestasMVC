@@ -19,11 +19,10 @@ body {
 }
 
 .nav-link{
-    color:chartreuse;
+    color:white;
     text-decoration: none;  
 
-}
-.table table-hover{
+}.table table-hover{
     color:white;
     text-decoration: none;
 
