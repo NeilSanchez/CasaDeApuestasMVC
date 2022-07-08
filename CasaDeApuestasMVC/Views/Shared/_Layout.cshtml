@@ -20,26 +20,55 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CasaDeApuestasMVC</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <nav class="navbar"style="background-color: dark;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+      CASA DE APUESTAS
+    </a>
+  </div>
+
+</nav>
+    <div class="d-flex align-items-start">
+  <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    <button class="nav-link active"  id="v-pills-inicio-tab" data-bs-toggle="pill" data-bs-target="#v-pills-inicio" type="button" role="tab" aria-controls="v-pills-inicio" aria-selected="true">INICIO</button>
+    <button class="nav-link" id="v-pills-envivo-tab" data-bs-toggle="pill" data-bs-target="#v-pills-envivo" type="button" role="tab" aria-controls="v-pills-envivo" aria-selected="false">EN VIVO</button>
+    <button class="nav-link" id="v-pills-enbreve-tab" data-bs-toggle="pill" data-bs-target="#v-pills-enbreve" type="button" role="tab" aria-controls="v-pills-enbreve" aria-selected="false">EN BREVE</button>
+    <button class="nav-link" id="v-pills-historial-tab" data-bs-toggle="pill" data-bs-target="#v-pills-historial" type="button" role="tab" aria-controls="v-pills-historial" aria-selected="false">HISTORIAL</button>
+    <button class="nav-link" id="v-pills-tusapuestas-tab" data-bs-toggle="pill" data-bs-target="#v-pills-tusapuestas" type="button" role="tab" aria-controls="v-pills-tusapuestas" aria-selected="false">TUS APUESTAS</button>
+    <button class="nav-link" id="v-pills-configuracion-tab" data-bs-toggle="pill" data-bs-target="#v-pills-configuracion" type="button" role="tab" aria-controls="v-pills-configuracion" aria-selected="false">CONFIGURACION</button>
+    <li class="nav-item dropend">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">EVENTOS POPULARES
+
+    </a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="#">Separated link</a></li>
+    </ul>
+  </li>
+    <button class="nav-link" id="v-pills-copalibertadores-tab" data-bs-toggle="pill" data-bs-target="#v-pills-copalibertadores" type="button" role="tab" aria-controls="v-pills-copalibertadores" aria-selected="false">Copa Libertadores</button>
+    <button class="nav-link" id="v-pills-qatar2022-tab" data-bs-toggle="pill" data-bs-target="#v-pills-qatar2022" type="button" role="tab" aria-controls="v-pills-qatar2022" aria-selected="false">Qatar 2022</button>
+    <button class="nav-link" id="v-pills-ligaespañola-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ligaespañola" type="button" role="tab" aria-controls="v-pills-ligaespañola" aria-selected="false">Liga Española</button>
+    <button class="nav-link" id="v-pills-ligabrasila-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ligabrasila" type="button" role="tab" aria-controls="v-pills-ligabrasila" aria-selected="false">Liga Brasil A</button>
+  </div>
+  <div class="tab-content" id="v-pills-tabContent">
+    <div class="tab-pane fade show active" id="v-pills-inicio" role="tabpanel" aria-labelledby="v-pills-inicio-tab" tabindex="0">...</div>
+    <div class="tab-pane fade" id="v-pills-envivo" role="tabpanel" aria-labelledby="v-pills-envivo-tab" tabindex="0">...</div>
+    <div class="tab-pane fade" id="v-pills-enbreve" role="tabpanel" aria-labelledby="v-pills-enbreve-tab" tabindex="0">...</div>
+    <div class="tab-pane fade" id="v-pills-historial" role="tabpanel" aria-labelledby="v-pills-historial-tab" tabindex="0">...</div>
+    <div class="tab-pane fade" id="v-pills-tusapuestas" role="tabpanel" aria-labelledby="v-pills-tusapuestas-tab" tabindex="0">...</div>
+    <div class="tab-pane fade" id="v-pills-configuracion" role="tabpanel" aria-labelledby="v-pills-configuracion-tab" tabindex="0">...</div>
+     <div class="tab-pane fade" id="v-pills-copalibertadores" role="tabpanel" aria-labelledby="v-pills-copalibertadores-tab" tabindex="0">...</div>
+    <div class="tab-pane fade" id="v-pills-qatar2022" role="tabpanel" aria-labelledby="v-pills-qatar2022-tab" tabindex="0">...</div>
+    <div class="tab-pane fade" id="v-pills-ligaespañola" role="tabpanel" aria-labelledby="v-pills-ligaespañola-tab" tabindex="0">...</div>
+    <div class="tab-pane fade" id="v-pills-ligabrasila" role="tabpanel" aria-labelledby="v-pills-ligabrasila-tab" tabindex="0">...</div>
+  </div>
+</div>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -47,6 +76,8 @@
     </div>
 
     <footer class="border-top footer text-muted">
+
+
         <div class="container">
             &copy; 2022 - CasaDeApuestasMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
