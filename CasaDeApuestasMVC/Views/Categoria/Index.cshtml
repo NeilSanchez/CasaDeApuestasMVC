@@ -120,15 +120,15 @@
 
     //Button click btnGuardarCategoria
     $(".btnGuardarCategoria").click(function(){
-        var idCategoria = $("#hidIdCategoria").val();
+        //var idCategoria = $("#hidIdCategoria").val();
         var descripcion = $("#txtCategoria").val();
 
         $.ajax({
             type: "POST",
             url: '@Url.Action("Guardar","Categoria")',
             data: {
-                idCategoria: idCategoria,
-                descripcion: descripcion,
+                idCategoria: -1,
+                descripcion: descripcion
                 
             },
             cache:false,
