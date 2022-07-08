@@ -15,8 +15,6 @@ namespace CasaDeApuestasMVC.Controllers
         {
             var categoria = await CategoriaService.GetAll();
             return PartialView(categoria);
-            Random rnd = new Random();
-            int card = rnd.Next(52);     // creates a number between 0 and 51
         }
         public async Task<IActionResult> Eliminar(int idCategoria)
         {
