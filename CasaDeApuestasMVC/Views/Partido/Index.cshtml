@@ -1,33 +1,26 @@
 ﻿<div class="alert alert-primary">
     <div class="row">
         <div class="col-md-4">
-            <h1>Mantenimiento de Partido</h1>
-        </div>
-        <div class="col-md-2">
-            <button id="btnAgregarPartido" class="btn btn-success">
-                Agregar  
-            </button>
+            <h4>Lista de Partidos EN VIVIO</h4>
         </div>
     </div>
 </div>
 
-<div id="divListadoPartido" class="divListadoPartido">
-
+<div id="divListadoPartido" class="divListadoPartidoABC">
 </div>
 
+
 <script>
-
-    CargarListadoPartido()
-    function CargarListadoPartido()
+     CargarListadoPartido();
+     function CargarListadoPartido()
     {
-
         $.ajax({
-
             type: "GET",
-            url: "@Url.Action("Listado","Partido")",
-            cache: false,
-            success: function(dataHTMLPartido) {
-                $("#divListadoPartido").html(dataHTMLPartido)
+            url: '@Url.Action("Listado","Partido")',
+            cache:false,
+            success: function(dataHTMLPartidos)
+            {
+                $("#divListadoPartido").html(dataHTMLPartidos);
             }
         });
     }
