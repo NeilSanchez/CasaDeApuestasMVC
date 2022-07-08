@@ -38,7 +38,7 @@ namespace CasaDeApuestasMVC.Services
             using var httpClient = new HttpClient();
             var json = JsonConvert.SerializeObject(promocion);
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-            using var response = await httpClient.PostAsync(urlBase + "Insert", stringContent);
+            using var response = await httpClient.PostAsync(urlBase + "Create", stringContent);
             string apiResponse = response.Content.ReadAsStringAsync().Result;
             var result = JsonConvert.DeserializeObject<bool>(apiResponse);
             return result;
