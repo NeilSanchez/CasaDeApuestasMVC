@@ -26,6 +26,7 @@ html {
     transition-duration: 0.15s, 0.15s, 0.15s;
     transition-timing-function: ease-in-out, ease-in-out, ease-in-out;
     transition-delay: 0s, 0s, 0s;
+    left: -70px;
 }
 
 body {
@@ -49,7 +50,7 @@ body {
 
     .wrapper .menu-btn {
         position: absolute;
-        left: -300px;
+        left: -70px;
         top: 10px;
         background: #4a4a4a;
         color: #fff;
@@ -72,7 +73,7 @@ body {
 .wrapper .menu-btn i {
     position: absolute;
     transform:;
-    font-size: 23px;
+    font-size: 7px;
     transition: all 0.3s ease;
 }
 
