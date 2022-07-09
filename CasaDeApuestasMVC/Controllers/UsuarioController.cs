@@ -10,6 +10,15 @@ namespace CasaDeApuestasMVC.Controllers
         {
             return View();
         }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult Registro()
+        {
+            return View();
+        }
+
         [HttpGet]
         public async Task<IActionResult> Listado()
         {

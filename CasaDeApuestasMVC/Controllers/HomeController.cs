@@ -17,6 +17,7 @@ namespace CasaDeApuestasMVC.Controllers
         {
             return View();
         }
+       
 
         public IActionResult Privacy()
         {
