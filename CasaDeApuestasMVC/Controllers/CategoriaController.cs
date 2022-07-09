@@ -39,11 +39,11 @@ namespace CasaDeApuestasMVC.Controllers
 
             bool exito = true;
             if (idCategoria == -1)
-                exito = await CategoriaService.Insert(categoria);
+                exito = await CategoriaService.Insert(categoria) > 0 ? true : false;
             else
             {
                 categoria.Id = idCategoria;
-                exito = await CategoriaService.Update(idCategoria, categoria);
+                exito = await CategoriaService.Update(idCategoria, categoria) > 0 ? true : false;
             }
             return Json(exito);
         }

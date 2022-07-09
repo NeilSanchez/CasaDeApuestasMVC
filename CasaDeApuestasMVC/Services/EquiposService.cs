@@ -9,7 +9,7 @@ namespace CasaDeApuestasMVC.Services
         public static async Task<IEnumerable<EquiposModel>> GetAll()
         {
             //Get all Users
-            String urlBase = "http://localhost:5001/api/Equipo/";
+            String urlBase = "http://localhost:5001/api/Equipos/";
 
             var client = new HttpClient();
             var response = await client.GetAsync(urlBase + "GetAll");
@@ -21,7 +21,7 @@ namespace CasaDeApuestasMVC.Services
         public static async Task<EquiposModel> GetEquipos(int id)
         {
             //Get All using HttpClient
-            string urlBase = "http://localhost:5001/api/Equipo/";
+            string urlBase = "http://localhost:5001/api/Equipos/";
 
             using var httpClient = new HttpClient();
             using var response = await httpClient.GetAsync(urlBase + "GetById/" + id);
@@ -31,40 +31,41 @@ namespace CasaDeApuestasMVC.Services
         }
 
         //Create new Equipos
-        public static async Task<bool> Insert(EquiposModel equipos)
+        public static async Task<int> Insert(EquiposModel equipos)
         {
-            string urlBase = "http://localhost:5001/api/Equipo/";
+            string urlBase = "http://localhost:5001/api/Equipos/";
 
             using var httpClient = new HttpClient();
             var json = JsonConvert.SerializeObject(equipos);
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
             using var response = await httpClient.PostAsync(urlBase + "Create", stringContent);
             string apiResponse = response.Content.ReadAsStringAsync().Result;
-            var result = JsonConvert.DeserializeObject<bool>(apiResponse);
+            var result = JsonConvert.DeserializeObject<int>(apiResponse);
             return result;
         }
 
+
         //Update Equipos
-        public static async Task<bool> Update(int id, EquiposModel equipos)
+        public static async Task<int> Update(int id, EquiposModel equipos)
         {
-            string urlBase = "http://localhost:5001/api/Equipo/";
+            string urlBase = "http://localhost:5001/api/Equipos/";
             using var httpClient = new HttpClient();
             var json = JsonConvert.SerializeObject(equipos);
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-            using var response = await httpClient.PutAsync(urlBase + "Update/" + id, stringContent);
+            using var response = await httpClient.PutAsync(urlBase + "Update/?id=" + id, stringContent);
             string apiResponse = response.Content.ReadAsStringAsync().Result;
-            var result = JsonConvert.DeserializeObject<bool>(apiResponse);
+            var result = JsonConvert.DeserializeObject<int>(apiResponse);
             return result;
         }
         //Delete Equipos
         public static async Task<bool> Delete(int id)
         {
-            string urlBase = "http://localhost:5001/api/Equipo/";
+            string urlBase = "http://localhost:5001/api/Equipos/";
             using var httpClient = new HttpClient();
-            using var response = await httpClient.DeleteAsync(urlBase + "Delete/" + id);
+            using var response = await httpClient.DeleteAsync(urlBase + "Delete/?id=" + id);
             string apiResponse = response.Content.ReadAsStringAsync().Result;
-            var result = JsonConvert.DeserializeObject<bool>(apiResponse);
-            return result;
+
+            return (int)response.StatusCode == 400 ? false : true;
         }
     }
 }

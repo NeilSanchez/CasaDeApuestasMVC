@@ -26,17 +26,17 @@ namespace CasaDeApuestasMVC.Services
             using var httpClient = new HttpClient();
             using var response = await httpClient.GetAsync(urlBase + "GetById/" + id);
             string apiResponse = response.Content.ReadAsStringAsync().Result;
-            var usuario = JsonConvert.DeserializeObject<PartidoModel>(apiResponse);
-            return usuario;
+            var partido = JsonConvert.DeserializeObject<PartidoModel>(apiResponse);
+            return partido;
         }
 
         //Create new Partido
-        public static async Task<int> Insert(PartidoModel usuario)
+        public static async Task<int> Insert(PartidoModel partido)
         {
             string urlBase = "http://localhost:5001/api/Partido/";
 
             using var httpClient = new HttpClient();
-            var json = JsonConvert.SerializeObject(usuario);
+            var json = JsonConvert.SerializeObject(partido);
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
             using var response = await httpClient.PostAsync(urlBase + "Create", stringContent);
             string apiResponse = response.Content.ReadAsStringAsync().Result;
@@ -44,14 +44,15 @@ namespace CasaDeApuestasMVC.Services
             return result;
         }
 
+
         //Update Partido
-        public static async Task<int> Update(int id, PartidoModel usuario)
+        public static async Task<int> Update(int id, PartidoModel partido)
         {
             string urlBase = "http://localhost:5001/api/Partido/";
             using var httpClient = new HttpClient();
-            var json = JsonConvert.SerializeObject(usuario);
+            var json = JsonConvert.SerializeObject(partido);
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-            using var response = await httpClient.PutAsync(urlBase + "Update/" + id, stringContent);
+            using var response = await httpClient.PutAsync(urlBase + "Update/?id=" + id, stringContent);
             string apiResponse = response.Content.ReadAsStringAsync().Result;
             var result = JsonConvert.DeserializeObject<int>(apiResponse);
             return result;
@@ -61,7 +62,7 @@ namespace CasaDeApuestasMVC.Services
         {
             string urlBase = "http://localhost:5001/api/Partido/";
             using var httpClient = new HttpClient();
-            using var response = await httpClient.DeleteAsync(urlBase + "Delete/" + id);
+            using var response = await httpClient.DeleteAsync(urlBase + "Delete/?id=" + id);
             string apiResponse = response.Content.ReadAsStringAsync().Result;
 
             return (int)response.StatusCode == 400 ? false : true;
