@@ -21,4 +21,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-Console.WriteLine("HOla mundo");
+Console.WriteLine("Hola mundo");
