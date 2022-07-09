@@ -44,6 +44,7 @@ namespace CasaDeApuestasMVC.Services
             return result;
         }
 
+
         //Update Usuario
         public static async Task<int> Update(int id, UsuarioModel usuario)
         {
@@ -51,7 +52,7 @@ namespace CasaDeApuestasMVC.Services
             using var httpClient = new HttpClient();
             var json = JsonConvert.SerializeObject(usuario);
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-            using var response = await httpClient.PutAsync(urlBase + "Update/" + id, stringContent);
+            using var response = await httpClient.PutAsync(urlBase + "Update/?id=" + id, stringContent);
             string apiResponse = response.Content.ReadAsStringAsync().Result;
             var result = JsonConvert.DeserializeObject<int>(apiResponse);
             return result;
@@ -61,10 +62,12 @@ namespace CasaDeApuestasMVC.Services
         {
             string urlBase = "http://localhost:5001/api/Usuario/";
             using var httpClient = new HttpClient();
-            using var response = await httpClient.DeleteAsync(urlBase + "Delete/" + id);
+            using var response = await httpClient.DeleteAsync(urlBase + "Delete/?id=" + id);
             string apiResponse = response.Content.ReadAsStringAsync().Result;
-            
+
             return (int)response.StatusCode == 400 ? false : true;
         }
+
     }
 }
+

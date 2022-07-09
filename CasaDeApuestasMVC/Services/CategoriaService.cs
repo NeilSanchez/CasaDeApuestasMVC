@@ -8,7 +8,7 @@ namespace CasaDeApuestasMVC.Services
     {
         public static async Task<IEnumerable<CategoriaModel>> GetAll()
         {
-            //Get all Categorias
+            //Get all Users
             String urlBase = "http://localhost:5001/api/Categoria/";
 
             var client = new HttpClient();
@@ -31,7 +31,7 @@ namespace CasaDeApuestasMVC.Services
         }
 
         //Create new Categoria
-        public static async Task<bool> Insert(CategoriaModel categoria)
+        public static async Task<int> Insert(CategoriaModel categoria)
         {
             string urlBase = "http://localhost:5001/api/Categoria/";
 
@@ -40,20 +40,21 @@ namespace CasaDeApuestasMVC.Services
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
             using var response = await httpClient.PostAsync(urlBase + "Create", stringContent);
             string apiResponse = response.Content.ReadAsStringAsync().Result;
-            var result = JsonConvert.DeserializeObject<bool>(apiResponse);
+            var result = JsonConvert.DeserializeObject<int>(apiResponse);
             return result;
         }
 
+
         //Update Categoria
-        public static async Task<bool> Update(int id, CategoriaModel categoria)
+        public static async Task<int> Update(int id, CategoriaModel categoria)
         {
             string urlBase = "http://localhost:5001/api/Categoria/";
             using var httpClient = new HttpClient();
             var json = JsonConvert.SerializeObject(categoria);
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-            using var response = await httpClient.PutAsync(urlBase + "Update/" + id, stringContent);
+            using var response = await httpClient.PutAsync(urlBase + "Update/?id=" + id, stringContent);
             string apiResponse = response.Content.ReadAsStringAsync().Result;
-            var result = JsonConvert.DeserializeObject<bool>(apiResponse);
+            var result = JsonConvert.DeserializeObject<int>(apiResponse);
             return result;
         }
         //Delete Categoria
@@ -61,10 +62,11 @@ namespace CasaDeApuestasMVC.Services
         {
             string urlBase = "http://localhost:5001/api/Categoria/";
             using var httpClient = new HttpClient();
-            using var response = await httpClient.DeleteAsync(urlBase + "Delete/" + id);
+            using var response = await httpClient.DeleteAsync(urlBase + "Delete/?id=" + id);
             string apiResponse = response.Content.ReadAsStringAsync().Result;
-            var result = JsonConvert.DeserializeObject<bool>(apiResponse);
-            return result;
+
+            return (int)response.StatusCode == 400 ? false : true;
         }
+
     }
 }
